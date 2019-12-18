@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PlayerContoller : MonoBehaviour {
+[RequireComponent(typeof(Image))]
+public class PlayerContoller : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
   // set at 1 since player can't survive a hit from a meteor
   private int playerHealth = 1;
 
@@ -42,6 +45,23 @@ public class PlayerContoller : MonoBehaviour {
     if (!playerCanMove || (Time.timeScale == 0f)){
       return;
     }
-
   }
+
+  public void OnBeginDrag(PointerEventData data){
+    Debug.Log("Begin");
+  }
+
+  public void OnDrag(PointerEventData data){
+    Debug.Log(data.position);
+    Debug.Log(data.pressPosition);
+    Debug.Log("Dragging");
+    // Vector2 touchPosition = Camera.main.ScreenToWorldPoint(data);
+    // transform.position = touchPosition;
+  }
+
+  public void OnEndDrag(PointerEventData data){
+    Debug.Log("End");
+  }
+
+
 }

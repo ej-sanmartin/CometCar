@@ -24,6 +24,6 @@ public class ImpactEvent : MonoBehaviour {
 
     other.gameObject.GetComponent<AudioSource>().Play();
 
-    DestroyObject(this.gameObject);
+    Object.Destroy(this.gameObject);
   }
 }
