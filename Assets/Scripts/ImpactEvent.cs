@@ -14,15 +14,13 @@ public class ImpactEvent : MonoBehaviour {
       Instantiate(explosion,transform.position,transform.rotation);
     }
 
-    // if(other.tag == "player"){
-    //  other.gameObject.GetComponent<CharacterController>().killCar(damage);
+    // if(other.tag == "Player"){
+    //  other.gameObject.GetComponent<PlayerController>().ImpactPlayer(damage);
     //}
 
-    // if(other.tag == "planet"){
-    //  other.gameObject.GetComponent<CharacterController>().AddScore();
-    //}
 
-    other.gameObject.GetComponent<AudioSource>().Play();
+      other.gameObject.GetComponent<Planet>().AddScore();
+
 
     Object.Destroy(this.gameObject);
   }
