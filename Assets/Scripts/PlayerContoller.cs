@@ -35,15 +35,6 @@ public class PlayerContoller : MonoBehaviour {
   Animator _animator;
   AudioSource _audio;
 
-  // player tracking
-  bool facingRight = true;
-
-  // store the layer the player is on (setup in Awake)
-  int _playerLayer;
-
-  // number of layer that Platforms are on (setup in Awake)
-  int _platformLayer;
-
   void Awake(){
     _rb = GetComponent<Rigidbody2D>();
     if(_rb==null) { // if AudioSource is missing
