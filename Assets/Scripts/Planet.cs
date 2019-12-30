@@ -26,5 +26,8 @@ public class Planet : MonoBehaviour {
     // indicates to the player that meteor has struck planet
     PlaySound(crashSFX);
     // updates UI
+    if(GameManager.gm){
+      GameManager.gm.AddPoints();
+    }
   }
 }
