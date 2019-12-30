@@ -5,23 +5,26 @@ using UnityEngine;
 public class ImpactEvent : MonoBehaviour {
   [Tooltip("Expects a particle effect")]
   public GameObject explosion;
-  public int damage = 1;
 
-  void OnCollisionEnter2D(Collision2D other){
+  void OnCollisionEnter2D(Collision2D collided){
     gameObject.GetComponent<Rotate>().enabled = false;
 
     if (explosion){
       Instantiate(explosion,transform.position,transform.rotation);
     }
 
-    // if(other.tag == "Player"){
-    //  other.gameObject.GetComponent<PlayerController>().ImpactPlayer(damage);
-    //}
+    // will kill player and end game
+    if(collided.gameObject.tag == "Player"){
+      collided.gameObject.GetComponent<PlayerContoller>().ImpactPlayer();
+    }
 
+    // will add score if meteor hits planet
+    if(collided.gameObject.tag == "Planet"){
+      collided.gameObject.GetComponent<Planet>().AddScore();
+    }
 
-      other.gameObject.GetComponent<Planet>().AddScore();
-
-
+    // does crude clean up
+    // TODO: find more efficient way to clean up game after ever collision
     Object.Destroy(this.gameObject);
   }
 }

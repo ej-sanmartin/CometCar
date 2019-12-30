@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1938770836533895229}
   - component: {fileID: 6099677883674511429}
   - component: {fileID: 2712096831598183498}
+  - component: {fileID: 1283854766}
   - component: {fileID: 1283854771}
   m_Layer: 0
   m_Name: Player
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &7575748881216206442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,8 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351f05b9089ee42edbfd097f737017e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExplosion: {fileID: 0}
-  moveSpeed: 3
+  playerExplosion: {fileID: 5530685961181158093, guid: 40172b331d61a410db76f5faa66d70ca,
+    type: 3}
+  moveSpeed: 1.5
+  planet: {fileID: 0}
   playerCanMove: 1
   crashSFX: {fileID: 8300000, guid: 399945ebb5e0b4040b1fa353d6291c11, type: 3}
 --- !u!82 &2712096831598183498
@@ -308,6 +311,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &1283854766
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575748881216206441}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.19, y: -0.18}
+  serializedVersion: 2
+  m_Radius: 0.09
 --- !u!58 &1283854771
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -321,6 +340,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.08}
+  m_Offset: {x: -0.19, y: -0.18}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.09

@@ -23,6 +23,8 @@ public class Planet : MonoBehaviour {
 
   // plays collision sound from being hit by a meteor and calls add score function
   public void AddScore(){
+    // indicates to the player that meteor has struck planet
     PlaySound(crashSFX);
+    // updates UI
   }
 }

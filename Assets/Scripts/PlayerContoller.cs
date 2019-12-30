@@ -6,23 +6,21 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class PlayerContoller : MonoBehaviour {
-  // set at 1 since player can't survive a hit from a meteor
-  private int playerHealth = 1;
   public GameObject playerExplosion;
 
   // player controls and other variables that handle player movement via touch control
   [Range(0.0f, 10.0f)] // create a slider in the editor and set limits on moveSpeed
   public float moveSpeed = 3f;
-  private Vector3 touchPosition;
-  private Rigidbody2D rb;
-  private Vector3 direction;
+  Vector3 _touchPosition;
+  Rigidbody2D _rb;
+  Vector3 _direction;
 
   // handles sprite rotation along planet surface
-  RaycastHit2D hitOnPlanet;
+  RaycastHit2D _hitOnPlanet;
 
   // handles restraining movement to surface of planet
   public GameObject planet;
-  float radius = 1.2f;
+  private float _radius = 1.2f;
 
   // player can move?
   // we want this public so other scripts can access it but we don't want to show in editor as it might confuse designer
@@ -47,11 +45,11 @@ public class PlayerContoller : MonoBehaviour {
   int _platformLayer;
 
   void Awake(){
-    rb = GetComponent<Rigidbody2D>();
-    if(rb==null) { // if AudioSource is missing
+    _rb = GetComponent<Rigidbody2D>();
+    if(_rb==null) { // if AudioSource is missing
       Debug.LogWarning("Rigidbody2D component missing from this gameobject. Adding one.");
       // let's just add the AudioSource component dynamically
-      rb = gameObject.AddComponent<Rigidbody2D>();
+      _rb = gameObject.AddComponent<Rigidbody2D>();
     }
 
     _audio = GetComponent<AudioSource>();
@@ -77,24 +75,24 @@ public class PlayerContoller : MonoBehaviour {
     // handles touch movement
     if(Input.touchCount > 0){
       Touch touch = Input.GetTouch(0);
-      touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-      touchPosition.z = 0;
-      direction = (touchPosition - transform.position);
-      rb.velocity = new Vector2(direction.x, direction.y) * moveSpeed;
+      _touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+      _touchPosition.z = 0;
+      _direction = (_touchPosition - transform.position);
+      _rb.velocity = new Vector2(_direction.x, _direction.y) * moveSpeed;
 
       if(touch.phase == TouchPhase.Ended){
-        rb.velocity = Vector2.zero;
+        _rb.velocity = Vector2.zero;
       }
     }
 
     // handles rotating sprite along planet
-    hitOnPlanet = Physics2D.Raycast(_rectTransform.anchoredPosition, -Vector2.up, 1f);
-    _rectTransform.rotation = Quaternion.Lerp(_rectTransform.rotation, Quaternion.FromToRotation(_rectTransform.anchoredPosition, hitOnPlanet.normal), Time.deltaTime);
+    _hitOnPlanet = Physics2D.Raycast(_rectTransform.anchoredPosition, -Vector2.up, 1f);
+    _rectTransform.rotation = Quaternion.Lerp(_rectTransform.rotation, Quaternion.FromToRotation(_rectTransform.anchoredPosition, _hitOnPlanet.normal), Time.deltaTime);
 
     // handles constrained movement along planet. Without it, player will follow touch and break laws of physics
     Vector2 offset = _rectTransform.anchoredPosition - (Vector2)planet.transform.position;
     offset.Normalize();
-    offset = offset * radius;
+    offset = offset * _radius;
     _rectTransform.anchoredPosition = offset;
   }
 
@@ -105,14 +103,13 @@ public class PlayerContoller : MonoBehaviour {
 
   void FreezeMotion() {
     playerCanMove = false;
-        rb.velocity = new Vector2(0,0);
-    rb.isKinematic = true;
+        _rb.velocity = new Vector2(0,0);
+    _rb.isKinematic = true;
   }
 
   // public function to kill the player when they have a fall death
   public void ImpactPlayer () {
     if (playerCanMove) {
-      playerHealth = 0;
       PlaySound(crashSFX);
       StartCoroutine (KillPlayer ());
     }
@@ -123,6 +120,7 @@ public class PlayerContoller : MonoBehaviour {
     if(playerCanMove){
       FreezeMotion();
       Instantiate(playerExplosion,transform.position,transform.rotation);
+      Object.Destroy(this.gameObject);
 
       // After waiting tell the GameManager to reset the game
 			yield return new WaitForSeconds(3.0f);
