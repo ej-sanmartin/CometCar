@@ -20,7 +20,7 @@ public class PlayerContoller : MonoBehaviour {
 
   // handles restraining movement to surface of planet
   public GameObject planet;
-  private float _radius = 1.2f;
+  private float _radius = 1.18f;
 
   // player can move?
   // we want this public so other scripts can access it but we don't want to show in editor as it might confuse designer
@@ -112,6 +112,10 @@ public class PlayerContoller : MonoBehaviour {
       FreezeMotion();
       Instantiate(playerExplosion,transform.position,transform.rotation);
       Object.Destroy(this.gameObject);
+
+      if(GameManager.gm){
+        GameManager.gm.EndGame();
+      }
 
       // After waiting tell the GameManager to reset the game
 			yield return new WaitForSeconds(3.0f);
