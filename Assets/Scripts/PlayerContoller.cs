@@ -114,10 +114,10 @@ public class PlayerContoller : MonoBehaviour {
       Object.Destroy(this.gameObject);
 
       if(GameManager.gm){
-        GameManager.gm.EndGame();
+        GameManager.gm.EndGame(); // end the game, stops score from being updated
       }
 
-      // After waiting tell the GameManager to reset the game
+      // After waiting tell the GameManager to activate restart buttons
 			yield return new WaitForSeconds(3.0f);
     }
   }
