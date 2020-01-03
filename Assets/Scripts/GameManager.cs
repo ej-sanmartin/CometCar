@@ -27,8 +27,13 @@ public class GameManager : MonoBehaviour {
   public Button RetryButton;
   public Button MenuButton;
 
+  // SFX
+  public AudioClip crashSFX;
+
   // references FadeOutEvent
   public GameObject _FadeOut;
+
+  AudioSource _audio;
 
   [HideInInspector]
   public bool gameIsOver = false;
@@ -36,6 +41,13 @@ public class GameManager : MonoBehaviour {
   void Awake() {
     if(gm == null){
       gm = this.gameObject.GetComponent<GameManager>();
+    }
+
+    _audio = GetComponent<AudioSource>();
+    if (_audio==null) { // if AudioSource is missing
+      Debug.LogWarning("AudioSource component missing from this gameobject. Adding one.");
+      // let's just add the AudioSource component dynamically
+      _audio = gameObject.AddComponent<AudioSource>();
     }
 
     if(UIScore==null){
@@ -54,13 +66,13 @@ public class GameManager : MonoBehaviour {
       GameOverScreen.enabled = false;
     }
 
-    // setup the listener to loadlevel when clicked
+    // setup the listener to Retry when clicked
     RetryButton.onClick.RemoveAllListeners();
-    RetryButton.onClick.AddListener(() => RetryGame());
+    RetryButton.onClick.AddListener(() => LoadSceneAfterGameOverThroughButton("Game"));
 
-    // setup the listener to loadlevel when clicked
+    // setup the listener to ReeturnToMenu when clicked
     MenuButton.onClick.RemoveAllListeners();
-    MenuButton.onClick.AddListener(() => ReturnToMenu());
+    MenuButton.onClick.AddListener(() => LoadSceneAfterGameOverThroughButton("StartMenu"));
   }
 
   public void AddPoints(){
@@ -74,6 +86,7 @@ public class GameManager : MonoBehaviour {
 
   // so not an Avengers reference :P
   public void EndGame(){
+    PlaySound(crashSFX);
     gameIsOver = true;
     highScore = PlayerPrefManager.GetHighscore();
     if(score > highScore){
@@ -91,16 +104,10 @@ public class GameManager : MonoBehaviour {
     StartCoroutine(LoadGameOverScreen());
   }
 
-  // Retry game
-  public void RetryGame(){
+  // changes scene during game over depending on button selected
+  public void LoadSceneAfterGameOverThroughButton(string scene){
     ActivateFadeOut();
-    StartCoroutine(LoadSceneWithFade("Game"));
-  }
-
-  // Return to menu Button
-  public void ReturnToMenu(){
-    ActivateFadeOut();
-    StartCoroutine(LoadSceneWithFade("StartMenu"));
+    StartCoroutine(LoadSceneWithFade(scene));
   }
 
   // Allows death animation to play
@@ -118,7 +125,12 @@ public class GameManager : MonoBehaviour {
 
   // handles fade out event
   void ActivateFadeOut(){
-    _FadeOut.SetActive(true); // initially set to false to avoid blocking raycast to start menu buttons
+    _FadeOut.SetActive(true); // initially set to false to avoid blocking raycast
     _FadeOut.GetComponent<FadeOutEvent>().StartFade();
+  }
+
+  // play sound through the audiosource on the gameobject
+  void PlaySound(AudioClip clip) {
+    _audio.PlayOneShot(clip);
   }
 }

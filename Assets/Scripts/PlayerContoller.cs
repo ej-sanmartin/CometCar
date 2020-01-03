@@ -27,13 +27,9 @@ public class PlayerContoller : MonoBehaviour {
   [HideInInspector]
   public bool playerCanMove = true;
 
-  // SFX
-  public AudioClip crashSFX;
-
   	// store references to components on the gameObject
   RectTransform _rectTransform;
   Animator _animator;
-  AudioSource _audio;
 
   void Awake(){
     _rb = GetComponent<Rigidbody2D>();
@@ -41,13 +37,6 @@ public class PlayerContoller : MonoBehaviour {
       Debug.LogWarning("Rigidbody2D component missing from this gameobject. Adding one.");
       // let's just add the AudioSource component dynamically
       _rb = gameObject.AddComponent<Rigidbody2D>();
-    }
-
-    _audio = GetComponent<AudioSource>();
-    if (_audio==null) { // if AudioSource is missing
-      Debug.LogWarning("AudioSource component missing from this gameobject. Adding one.");
-      // let's just add the AudioSource component dynamically
-      _audio = gameObject.AddComponent<AudioSource>();
     }
 
     _rectTransform = GetComponent<RectTransform>();
@@ -87,11 +76,6 @@ public class PlayerContoller : MonoBehaviour {
     _rectTransform.anchoredPosition = offset;
   }
 
-  // play sound through the audiosource on the gameobject
-  void PlaySound(AudioClip clip) {
-    _audio.PlayOneShot(clip);
-  }
-
   void FreezeMotion() {
     playerCanMove = false;
         _rb.velocity = new Vector2(0,0);
@@ -101,7 +85,6 @@ public class PlayerContoller : MonoBehaviour {
   // public function to kill the player when they have a fall death
   public void ImpactPlayer () {
     if (playerCanMove) {
-      PlaySound(crashSFX);
       StartCoroutine (KillPlayer ());
     }
   }
