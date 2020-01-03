@@ -1696,6 +1696,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIScore: {fileID: 686063460}
+  GameOverScreen: {fileID: 103505363}
+  FinalScore: {fileID: 963920341}
+  FinalScoreOutline: {fileID: 1045553800}
+  BestScore: {fileID: 2117795041}
+  BestScoreOutline: {fileID: 125091138}
+  RetryButton: {fileID: 953295776}
+  MenuButton: {fileID: 1893322804}
+  _FadeOut: {fileID: 1918187186}
   gameIsOver: 0
 --- !u!4 &712380081
 Transform:
@@ -1991,6 +1999,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 426119976}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &953295776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7256649996941796943, guid: 0eafe03f5af71487d991d250605772f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162104342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &956089709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,6 +3629,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2043923263515002078, guid: 196e14c17d8534fbca7e2de0e240e778,
     type: 3}
   m_PrefabInstance: {fileID: 992747362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1893322804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7256649996941796943, guid: 0eafe03f5af71487d991d250605772f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 394728442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1918187186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 474677682467484809, guid: 3db4f28fa472a49dd90da62bbdbaa037,
+    type: 3}
+  m_PrefabInstance: {fileID: 293890864}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1926046899
 PrefabInstance:

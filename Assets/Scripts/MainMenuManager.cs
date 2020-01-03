@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // include UI namespace since references UI Buttons directly
-using UnityEngine.EventSystems; // include EventSystems namespace so can set initial input for controller support
-using UnityEngine.SceneManagement; // include so we can load new scenes
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
 
@@ -43,7 +43,7 @@ public class MainMenuManager : MonoBehaviour {
 
   // Starts game
   public void StartGame(){
-    _FadeOut.SetActive(true); // initially set to false to avoid blocking raycast to buttons
+    _FadeOut.SetActive(true); // initially set to false to avoid blocking raycast to start menu buttons
     _FadeOut.GetComponent<FadeOutEvent>().StartFade();
     StartCoroutine(LoadGameWithFade());
   }
