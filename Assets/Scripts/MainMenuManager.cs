@@ -14,6 +14,9 @@ public class MainMenuManager : MonoBehaviour {
 	public Button startButton;
 	public Button carsButton;
 
+  // list the selectable cars
+	public GameObject[] carNames;
+
   // references FadeOutEvent
   public GameObject _FadeOut;
 
@@ -29,6 +32,16 @@ public class MainMenuManager : MonoBehaviour {
 
   void setCarSelect(){
     _CarsSelectMenu.SetActive(true);
+
+    // loops through each car defined in the editor
+    // TODO: make car buttons interactable if player reaches needed highscore and unlocked them
+    //       if not locked, disable and make car black
+    //       also make the selected car instantiate into game scene.
+    for(int i = 0; i < carNames.Length; i++){
+      GameObject carName = carNames[i];
+
+
+    }
   }
 
   public void ShowMenu(string menuName){
