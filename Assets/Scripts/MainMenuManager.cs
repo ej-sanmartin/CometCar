@@ -18,11 +18,17 @@ public class MainMenuManager : MonoBehaviour {
   public GameObject _FadeOut;
 
   void Awake(){
+    setCarSelect();
+
     ShowMenu("Main");
 
     // setup the listener to loadlevel when clicked
     startButton.onClick.RemoveAllListeners();
     startButton.onClick.AddListener(() => StartGame());
+  }
+
+  void setCarSelect(){
+    _CarsSelectMenu.SetActive(true);
   }
 
   public void ShowMenu(string menuName){
