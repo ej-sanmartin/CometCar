@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
 public class PlayerContoller : MonoBehaviour {
   public GameObject playerExplosion;
 
@@ -22,8 +21,6 @@ public class PlayerContoller : MonoBehaviour {
   public GameObject planet;
   private float _radius = 1.18f;
 
-  // player can move?
-  // we want this public so other scripts can access it but we don't want to show in editor as it might confuse designer
   [HideInInspector]
   public bool playerCanMove = true;
 

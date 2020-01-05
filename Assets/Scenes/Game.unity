@@ -326,7 +326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &103505360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4168,35 +4168,10 @@ PrefabInstance:
       propertyPath: planet
       value: 
       objectReference: {fileID: 582319121}
-    - target: {fileID: 6099677883674511429, guid: d38765a88adf5473e9809311a3f5b8b8,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7575748881216206441, guid: d38765a88adf5473e9809311a3f5b8b8,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575748881216206442, guid: d38765a88adf5473e9809311a3f5b8b8,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.078877345
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575748881216206442, guid: d38765a88adf5473e9809311a3f5b8b8,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.407361
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575748881216206442, guid: d38765a88adf5473e9809311a3f5b8b8,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.013794199
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575748881216206442, guid: d38765a88adf5473e9809311a3f5b8b8,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.82496214
       objectReference: {fileID: 0}
     - target: {fileID: 8115156887161778798, guid: d38765a88adf5473e9809311a3f5b8b8,
         type: 3}
@@ -4261,7 +4236,7 @@ PrefabInstance:
     - target: {fileID: 8115156887161778798, guid: d38765a88adf5473e9809311a3f5b8b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.191
+      value: 1.195
       objectReference: {fileID: 0}
     - target: {fileID: 8115156887161778798, guid: d38765a88adf5473e9809311a3f5b8b8,
         type: 3}
@@ -4303,7 +4278,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d38765a88adf5473e9809311a3f5b8b8, type: 3}
 --- !u!1001 &9061382307108107246
 PrefabInstance:

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+// handles persistent data management
 public static class PlayerPrefManager {
   public static void SetHighscore(int highscore){
     PlayerPrefs.SetInt("Highscore", highscore);

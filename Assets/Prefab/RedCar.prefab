@@ -14,13 +14,12 @@ GameObject:
   - component: {fileID: 7575748881216206443}
   - component: {fileID: 7575748881216206442}
   - component: {fileID: 2094643722403611963}
-  - component: {fileID: 1938770836533895229}
   - component: {fileID: 6099677883674511429}
   - component: {fileID: 2712096831598183498}
   - component: {fileID: 1283854766}
   - component: {fileID: 1283854771}
   m_Layer: 0
-  m_Name: Player
+  m_Name: RedCar
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014249593, y: -0.063087344}
+  m_Offset: {x: 0.013794199, y: -0.078877345}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84313864, y: 0.438941}
+  m_Size: {x: 0.82496214, y: 0.407361}
   m_EdgeRadius: 0
 --- !u!222 &2094643722403611963
 CanvasRenderer:
@@ -169,34 +168,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7575748881216206441}
   m_CullTransparentMesh: 0
---- !u!114 &1938770836533895229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7575748881216206441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &6099677883674511429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,10 +182,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerExplosion: {fileID: 5530685961181158093, guid: 40172b331d61a410db76f5faa66d70ca,
     type: 3}
-  moveSpeed: 1.5
-  planet: {fileID: 0}
+  moveSpeed: 2
+  planet: {fileID: 4779852318029291500, guid: 6f0f69eb4063f4d47a6ab0df4e7405a8, type: 3}
   playerCanMove: 1
-  crashSFX: {fileID: 8300000, guid: 399945ebb5e0b4040b1fa353d6291c11, type: 3}
 --- !u!82 &2712096831598183498
 AudioSource:
   m_ObjectHideFlags: 0
