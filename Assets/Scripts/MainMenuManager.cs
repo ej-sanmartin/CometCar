@@ -17,6 +17,7 @@ public class MainMenuManager : MonoBehaviour {
 
   // list the selectable cars
 	public Button[] carNames;
+  private string selectedCarColor;
 
   // UI for best score and a reference to the best score int
   // also references needed scores to unlock cars
@@ -37,24 +38,24 @@ public class MainMenuManager : MonoBehaviour {
   public GameObject _FadeOut;
 
   void Awake(){
-    setCarSelect();
+    setupCarSelect();
 
     ShowMenu("Main");
 
-    // setup the listener to loadlevel when clicked
+    // setup the listener to StartGame when clicked
     startButton.onClick.RemoveAllListeners();
     startButton.onClick.AddListener(() => StartGame());
 
-    // setup the listener to loadlevel when clicked
+    // setup the listener to Show Car Select Screen when clicked
     carsButton.onClick.RemoveAllListeners();
     carsButton.onClick.AddListener(() => ShowMenu("CarSelect"));
 
-    // setup the listener to loadlevel when clicked
+    // setup the listener to Show Main Menu screen when clicked
     backButton.onClick.RemoveAllListeners();
     backButton.onClick.AddListener(() => ShowMenu("Main"));
   }
 
-  void setCarSelect(){
+  void setupCarSelect(){
     _CarsSelectMenu.SetActive(true);
 
     bestScore = PlayerPrefManager.GetHighscore();
@@ -62,10 +63,6 @@ public class MainMenuManager : MonoBehaviour {
     UIBestScore.text = bestScore.ToString();
     UIBestScore_Outline.text = bestScore.ToString();
 
-    // loops through each car defined in the editor
-    // TODO: make car buttons interactable if player reaches needed highscore and unlocked them
-    //       if not locked, disable and make car black
-    //       also make the selected car instantiate into game scene.
     for(int i = 0; i < carNames.Length; i++){
       Button carCard = carNames[i];
       UIScoreRequirement = carCard.transform.FindDeepChild("ScoreNeededToUnlock").GetComponent<Text>();
@@ -74,13 +71,18 @@ public class MainMenuManager : MonoBehaviour {
       UIScoreRequirement_Outline = carCard.transform.FindDeepChild("ScoreNeededToUnlock_Outline").GetComponent<Text>();
       UIScoreRequirement_Outline_ToCompare = int.Parse(UIScoreRequirement_Outline.text);
 
+      selectedCarColor = carCard.transform.FindDeepChild("SelectedString").GetComponent<Text>().text;
+
+      // setup the listener to set the string for the selected color car from PlayerPrefsManager.cs when clicked
+      backButton.onClick.RemoveAllListeners();
+      backButton.onClick.AddListener(() => PlayerPrefManager.SetSelectedCar(selectedCarColor));
+
       if(bestScore >= UIScoreRequirement_ToCompare){
         UIScoreRequirement.enabled = false;
         UIScoreRequirement_Outline.enabled = false;
       } else {
         carCard.GetComponent<Button>().interactable = false;
         carCard.GetComponent<Image>().color = Color.black;
-
       }
     }
   }

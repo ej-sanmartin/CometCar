@@ -14,4 +14,16 @@ public static class PlayerPrefManager {
       return 0;
     }
   }
+
+  public static void SetSelectedCar(string carColor){
+    PlayerPrefs.SetString("SelectedCar", carColor);
+  }
+
+  public static string GetSelectedCar(){
+    if(PlayerPrefs.HasKey("SelectedCar")){
+      return PlayerPrefs.GetString("SelectedCar");
+    } else {
+      return "red"; // if no car was selected, selected string will return default color, red.
+    }
+  }
 }
