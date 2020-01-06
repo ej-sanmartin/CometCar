@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour {
   private int maxScore = 9999; // this is max since 5 digit numbers breaks UI
   private int highScore;
 
+  // variables that handle which car color spawns
+  public GameObject[] selectableCars;
+  public string _selectedCarString = "red";
+  private Transform _carSpawnPositon;
+
   // references UI elements
 	public TextMeshProUGUI UIScore;
   public Canvas GameOverScreen;
@@ -33,6 +38,7 @@ public class GameManager : MonoBehaviour {
   // references FadeOutEvent
   public GameObject _FadeOut;
 
+  // handles audio
   AudioSource _audio;
 
   [HideInInspector]
@@ -43,12 +49,17 @@ public class GameManager : MonoBehaviour {
       gm = this.gameObject.GetComponent<GameManager>();
     }
 
+    _carSpawnPositon = GetComponent<Transform>();
+
     _audio = GetComponent<AudioSource>();
     if (_audio==null) { // if AudioSource is missing
       Debug.LogWarning("AudioSource component missing from this gameobject. Adding one.");
       // let's just add the AudioSource component dynamically
       _audio = gameObject.AddComponent<AudioSource>();
     }
+
+    _selectedCarString = PlayerPrefManager.GetSelectedCar();
+    SpawnSelectedCar(_selectedCarString);
 
     if(UIScore==null){
       Debug.LogError("Need to set UIScore on Game Manager.");
@@ -73,6 +84,42 @@ public class GameManager : MonoBehaviour {
     // setup the listener to ReeturnToMenu when clicked
     MenuButton.onClick.RemoveAllListeners();
     MenuButton.onClick.AddListener(() => LoadSceneAfterGameOverThroughButton("StartMenu"));
+  }
+
+  public void SpawnSelectedCar(string carColor){
+    switch(carColor){
+      case "red":
+        SpawnCarFactory(0);
+        break;
+      case "green":
+        SpawnCarFactory(1);
+        break;
+      case "orange":
+        SpawnCarFactory(2);
+        break;
+      case "black":
+        SpawnCarFactory(3);
+        break;
+      case "purple":
+        SpawnCarFactory(4);
+        break;
+      case "white":
+        SpawnCarFactory(5);
+        break;
+      case "blue":
+        SpawnCarFactory(6);
+        break;
+      case "pink":
+        SpawnCarFactory(7);
+        break;
+      case "yellow":
+        SpawnCarFactory(8);
+        break;
+    }
+  }
+
+  public void SpawnCarFactory(int carNumber){
+    Instantiate(selectableCars[carNumber], _carSpawnPositon);
   }
 
   public void AddPoints(){

@@ -17,7 +17,6 @@ public class MainMenuManager : MonoBehaviour {
 
   // list the selectable cars
 	public Button[] carNames;
-  private string selectedCarColor;
 
   // UI for best score and a reference to the best score int
   // also references needed scores to unlock cars
@@ -65,26 +64,38 @@ public class MainMenuManager : MonoBehaviour {
 
     for(int i = 0; i < carNames.Length; i++){
       Button carCard = carNames[i];
-      UIScoreRequirement = carCard.transform.FindDeepChild("ScoreNeededToUnlock").GetComponent<Text>();
-      UIScoreRequirement_ToCompare = int.Parse(UIScoreRequirement.text);
 
-      UIScoreRequirement_Outline = carCard.transform.FindDeepChild("ScoreNeededToUnlock_Outline").GetComponent<Text>();
-      UIScoreRequirement_Outline_ToCompare = int.Parse(UIScoreRequirement_Outline.text);
+      if(carCard.transform.FindDeepChild("ScoreNeededToUnlock")){
+        UIScoreRequirement = carCard.transform.FindDeepChild("ScoreNeededToUnlock").GetComponent<Text>();
+        UIScoreRequirement_ToCompare = int.Parse(UIScoreRequirement.text);
 
-      selectedCarColor = carCard.transform.FindDeepChild("SelectedString").GetComponent<Text>().text;
+        UIScoreRequirement_Outline = carCard.transform.FindDeepChild("ScoreNeededToUnlock_Outline").GetComponent<Text>();
+        UIScoreRequirement_Outline_ToCompare = int.Parse(UIScoreRequirement_Outline.text);
+      }
+
+      string selectedCarColor = carCard.transform.FindDeepChild("SelectedString").GetComponent<Text>().text;
 
       // setup the listener to set the string for the selected color car from PlayerPrefsManager.cs when clicked
-      backButton.onClick.RemoveAllListeners();
-      backButton.onClick.AddListener(() => PlayerPrefManager.SetSelectedCar(selectedCarColor));
+      carCard.onClick.RemoveAllListeners();
+      carCard.onClick.AddListener(() => CarColorButton(selectedCarColor));
 
       if(bestScore >= UIScoreRequirement_ToCompare){
-        UIScoreRequirement.enabled = false;
-        UIScoreRequirement_Outline.enabled = false;
+        carCard.GetComponent<Button>().interactable = true;
+        if(i != 0){
+          UIScoreRequirement.enabled = false;
+          UIScoreRequirement_Outline.enabled = false;
+        }
+
       } else {
         carCard.GetComponent<Button>().interactable = false;
         carCard.GetComponent<Image>().color = Color.black;
       }
     }
+  }
+
+  public void CarColorButton(string carColorToSetInPlayerPref){
+    Debug.Log(carColorToSetInPlayerPref);
+    PlayerPrefManager.SetSelectedCar(carColorToSetInPlayerPref);
   }
 
   public void ShowMenu(string menuName){
