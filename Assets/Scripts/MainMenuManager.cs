@@ -94,7 +94,6 @@ public class MainMenuManager : MonoBehaviour {
   }
 
   public void CarColorButton(string carColorToSetInPlayerPref){
-    Debug.Log(carColorToSetInPlayerPref);
     PlayerPrefManager.SetSelectedCar(carColorToSetInPlayerPref);
   }
 

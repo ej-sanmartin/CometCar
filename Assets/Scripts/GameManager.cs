@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
   private int maxScore = 9999; // this is max since 5 digit numbers breaks UI
   private int highScore;
 
+  // references help message
+  public Text HelpMessage;
+  public Text HelpMessage_Outline;
+
   // variables that handle which car color spawns
   public GameObject[] selectableCars;
   public string _selectedCarString = "red";
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour {
     if(gm == null){
       gm = this.gameObject.GetComponent<GameManager>();
     }
+
+    StartCoroutine(ShowHelpMessage("Car Follows Finger", 5f));
 
     _carSpawnPositon = GetComponent<Transform>();
 
@@ -122,6 +128,11 @@ public class GameManager : MonoBehaviour {
     Instantiate(selectableCars[carNumber], _carSpawnPositon);
   }
 
+  // play sound through the audiosource on the gameobject
+  void PlaySound(AudioClip clip) {
+    _audio.PlayOneShot(clip);
+  }
+
   public void AddPoints(){
     // only updates if game is not over and score isn't at max
     if(!gameIsOver || score == maxScore){
@@ -161,6 +172,8 @@ public class GameManager : MonoBehaviour {
   IEnumerator LoadGameOverScreen(){
     yield return new WaitForSeconds(2f);
     UIScore.enabled = false;
+    HelpMessage.enabled = false;
+    HelpMessage_Outline.enabled = false;
     GameOverScreen.enabled = true;
   }
 
@@ -170,14 +183,18 @@ public class GameManager : MonoBehaviour {
     SceneManager.LoadScene(selectedScene);
   }
 
+  // handles pop up help message at beginning of game
+  IEnumerator ShowHelpMessage(string message, float delay){
+    HelpMessage.text = message;
+    HelpMessage_Outline.text = message;
+    yield return new WaitForSeconds(delay);
+    HelpMessage.enabled = false;
+    HelpMessage_Outline.enabled = false;
+  }
+
   // handles fade out event
   void ActivateFadeOut(){
     _FadeOut.SetActive(true); // initially set to false to avoid blocking raycast
     _FadeOut.GetComponent<FadeOutEvent>().StartFade();
-  }
-
-  // play sound through the audiosource on the gameobject
-  void PlaySound(AudioClip clip) {
-    _audio.PlayOneShot(clip);
   }
 }
