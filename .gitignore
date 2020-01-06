@@ -24,7 +24,8 @@ ExportedObj/
 *.pdb
 
 # UnityAds file handling integration
-UnityAdsManager
+UnityAdsManager.cs
+UnityAdsManager.cs.meta
 
 # Unity3D generated meta files
 *.pidb.meta
