@@ -37,6 +37,9 @@ public class MainMenuManager : MonoBehaviour {
   public GameObject _FadeOut;
 
   void Awake(){
+    // Resets all saved highscores and player prefs. For debugging purposes.
+    // PlayerPrefs.DeleteAll();
+
     setupCarSelect();
 
     ShowMenu("Main");
