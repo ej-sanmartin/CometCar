@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour {
     HelpMessage.enabled = false;
     HelpMessage_Outline.enabled = false;
     GameOverScreen.enabled = true;
+    UnityAdsManager.IncrementDeathCountAndRunAd();
   }
 
   // lets animation play out to transition to game

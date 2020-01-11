@@ -1293,6 +1293,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7256649996941796943, guid: 0eafe03f5af71487d991d250605772f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256649996941796943, guid: 0eafe03f5af71487d991d250605772f3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7256649998044108976, guid: 0eafe03f5af71487d991d250605772f3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4359,10 +4369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931c1a2215fd24fc8830247b2fe5259d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _APPSTORE_ID: 3421545
-  _VIDEO_AD: video
-  isAppStore: 1
-  isTestAdd: 1
+  deathCountTrigger: 3
+  isTestAd: 1
 --- !u!1 &1412580540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 474677682467484809, guid: 3db4f28fa472a49dd90da62bbdbaa037,
